@@ -115,3 +115,6 @@ dist
 
 #SQLite
 database.sqlite
+
+#Expo
+.expo
