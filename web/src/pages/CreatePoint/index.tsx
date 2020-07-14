@@ -4,10 +4,14 @@ import { FiArrowLeft } from "react-icons/fi";
 import { Map, TileLayer, Marker } from 'react-leaflet'
 import { LeafletMouseEvent } from "leaflet";
 import axios from "axios";
+
+import Dropzone from '../../components/Dropzone';
+
 import api from "../../services/Api";
 
-import './style.css';
 import logo from "../../assets/logo.svg";
+
+import './style.css';
 
 //Sempre que criar um estado para um array ou objeto: informa manualmente o tipo da variavel
 
@@ -35,6 +39,7 @@ const CreatePoint = () => {
     const [ufs, setUfs] = useState<string[]>([]);
     const [cities, setCities] = useState<string[]>([]);
     const [selectedItems, setSelectedItems] = useState<number[]>([]);
+    const [selectedFile, setSelectedFile] = useState<File>();
 
     const [selectedUf, setSelectedUf] = useState('0');
     const [selectedCity, setSelectedCity] = useState('0');
@@ -134,16 +139,20 @@ const CreatePoint = () => {
         const [latitude, longitude] = selectedPosition;
         const items = selectedItems;
 
-        const data = {
-            name,
-            email,
-            whatsapp,
-            uf,
-            city,
-            latitude,
-            longitude,
-            items
-        };
+        const data = new FormData();
+
+            data.append('name', name);
+            data.append('email', email);
+            data.append('whatsapp', whatsapp);
+            data.append('uf', uf);
+            data.append('city', city);
+            data.append('latitude', String(latitude));
+            data.append('longitude', String(longitude));
+            data.append('items', items.join(','));
+            if (selectedFile) {
+                data.append('image', selectedFile);
+            }
+
         await api.post('points', data);
 
         alert('Ponto de coleta criado!');
@@ -165,6 +174,8 @@ const CreatePoint = () => {
             <form onSubmit={handleSubmit}>
 
                 <h1>Cadastro do<br />ponto de coleta</h1>
+
+                <Dropzone onFileUpLoaded={setSelectedFile} />
 
                 <fieldset>
                     <legend>
