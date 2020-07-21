@@ -1,11 +1,11 @@
-<div style="display: flex; align-items: center; justify-content: center;margin-top: 30px;">
+<h1 align="center">
     <img src="/.github/assets/logo.svg" alt="Ecoleta" style="height: 90px;">
-</div>
-<div style="display: flex; align-items: center; justify-content: center; margin-top: 40px;flex-direction: row;">
+</h1>
+<h1 align="center">
     <img src="https://img.shields.io/github/last-commit/MichelCassol/ecoleta" alt="last-commit">&nbsp;&nbsp;&nbsp;
     <img src="https://img.shields.io/github/repo-size/MichelCassol/ecoleta" alt="repo-size">&nbsp;&nbsp;&nbsp;
     <img src="https://img.shields.io/badge/license-MIT-brightgreen" alt="License">
-</div>
+</h1>
 
 ## :eyeglasses: Preview
 ### :computer: Web
